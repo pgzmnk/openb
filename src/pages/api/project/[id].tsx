@@ -1,10 +1,13 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { Project } from '@/interfaces';
 
-export default function handler(req: NextApiRequest, res: NextApiResponse) {
+export default function handler(
+    req: NextApiRequest,
+    res: NextApiResponse<Project>
+) {
 
     const { query, method } = req
-    const id = query.id
+    const id = query.id as string
     const name = query.name as string
 
     switch (method) {
