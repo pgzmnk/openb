@@ -83,7 +83,8 @@ export default function Home() {
             </span>
           </h2>
           <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Discover and deploy boilerplate calculation methodologies built by the community.
+            Discover and deploy boilerplate calculation methodologies built by
+            the community.
           </p>
         </a>
 
@@ -100,7 +101,8 @@ export default function Home() {
             </span>
           </h2>
           <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Instantly deploy your own methodology to a public URL with HuggingFace.
+            Instantly deploy your own methodology to a public URL with
+            HuggingFace.
           </p>
         </a>
       </div>
