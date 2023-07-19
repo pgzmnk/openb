@@ -50,7 +50,8 @@ export default function CreateProjectForm({ onSubmit }: FormProps) {
               New Project
             </h1>
             <p className="mt-1 text-sm leading-6 text-gray-600">
-              If you are logged in, only your account will have access to this project.
+              If you are logged in, only your account will have access to this
+              project.
             </p>
 
             <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
@@ -109,7 +110,6 @@ export default function CreateProjectForm({ onSubmit }: FormProps) {
                   <div className="text-center w-full">
                     <Map />
                   </div>
-
                 </div>
                 <p className="mt-3 text-sm leading-6 text-gray-600">
                   Draw a polygon encompassing the project area.
