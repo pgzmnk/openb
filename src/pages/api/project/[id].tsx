@@ -16,8 +16,6 @@ export default async function handler(
       try {
         const project = await getProject(id);
 
-        console.log("- api project", project);
-
         if (project) {
           res.status(200).json(project);
         } else {
