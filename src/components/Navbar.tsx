@@ -5,10 +5,9 @@ import Link from "next/link";
 import LoginButton from "@/components/LoginButton";
 
 const navigation = [
-    { name: 'Dashboard', href: '#', current: true },
-    { name: 'Team', href: '#', current: false },
-    { name: 'Projects', href: '#', current: false },
-    { name: 'Calendar', href: '#', current: false },
+    { name: 'Projects', href: '/projects', current: false },
+    { name: 'New Project', href: '/project', current: false },
+    { name: 'Calculator', href: '/calculator', current: false },
 ]
 
 function classNames(...classes: string[]) {
