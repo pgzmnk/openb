@@ -41,3 +41,19 @@ export function getProject(id: string): Promise<Project | null> {
     });
   });
 }
+
+export function listProjects(author: string): Promise<Project[] | null> {
+  const con = duckdbConnection();
+  return new Promise((resolve, reject) => {
+    con.all(`FROM project WHERE authorId = '${author}'`, function (err, response) {
+      if (err) {
+        reject(err);
+      }
+      if (response.length === 0) {
+        resolve(null);
+      } else {
+        resolve(response as Project[]);
+      }
+    });
+  });
+}
