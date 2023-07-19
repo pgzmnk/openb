@@ -1,14 +1,21 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { Project } from '@/interfaces';
+import { Project, ApiMessageResponse } from '@/interfaces';
+import duckdb from "duckdb";
 
 export default function handler(
     req: NextApiRequest,
-    res: NextApiResponse<Project>
+    res: NextApiResponse<ApiMessageResponse>
 ) {
 
     const { query, method } = req
-    const id = query.id as string
-    const name = query.name as string
+    const { id, name, description, geometry, published, authorId } = req.body;
+
+    // Connect to DuckDB
+    var db = new duckdb.Database(
+        `md:?motherduck_token=${process.env.NEXT_PUBLIC_MOTHERDUCK_TOKEN}`,
+    );
+    var con = db.connect();
+    con.run("USE climatebase;");
 
     switch (method) {
         case 'GET':
@@ -17,7 +24,17 @@ export default function handler(
             break
         case 'POST':
             // Create data in your database
-            res.status(200).json({ id, name: name || `User ${id}` })
+            con.all(
+                `INSERT INTO project(id, name, description, geometry, published, authorId) 
+                VALUES ('${id}', '${name}', '${description}', '${geometry}', ${published}, '${authorId}');
+                    `,
+                function (err, response) {
+                    if (err) {
+                        throw err;
+                    }
+                }
+            )
+            res.status(200).send({ message: "Success." });
             break
         default:
             res.setHeader('Allow', ['GET', 'POST'])
