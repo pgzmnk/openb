@@ -15,7 +15,7 @@ export default function CreateProjectForm({ onSubmit }: FormProps) {
     id: uuidv4(),
     name: "1",
     description: "1",
-    geometry: "", //JSON.stringify(),
+    geometry: "",
     published: true,
     authorId: "default",
   });
@@ -46,12 +46,11 @@ export default function CreateProjectForm({ onSubmit }: FormProps) {
       <form onSubmit={handleSubmit}>
         <div className="space-y-12">
           <div className="border-b border-gray-900/10 pb-12">
-            <h2 className="text-base font-semibold leading-7 text-gray-900">
-              Profile
-            </h2>
+            <h1 className="text-base font-semibold leading-7 text-gray-900">
+              New Project
+            </h1>
             <p className="mt-1 text-sm leading-6 text-gray-600">
-              This information will be displayed publicly so be careful what you
-              share.
+              If you are logged in, only your account will have access to this project.
             </p>
 
             <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
@@ -95,7 +94,7 @@ export default function CreateProjectForm({ onSubmit }: FormProps) {
                   />
                 </div>
                 <p className="mt-3 text-sm leading-6 text-gray-600">
-                  Write a few sentences about yourself.
+                  Write a few sentences about the project.
                 </p>
               </div>
 
@@ -110,7 +109,11 @@ export default function CreateProjectForm({ onSubmit }: FormProps) {
                   <div className="text-center w-full">
                     <Map />
                   </div>
+
                 </div>
+                <p className="mt-3 text-sm leading-6 text-gray-600">
+                  Draw a polygon encompassing the project area.
+                </p>
               </div>
             </div>
           </div>

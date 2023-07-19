@@ -97,7 +97,7 @@ export default function Map() {
         maxzoom: 14,
       });
       // add the DEM source as a terrain layer with exaggerated height
-      map.current.setTerrain({ source: "mapbox-dem", exaggeration: 1.5 });
+      map.current.setTerrain({ source: "mapbox-dem", exaggeration: 15 });
     });
   });
 
