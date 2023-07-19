@@ -1,33 +1,29 @@
-import { Project } from '@/interfaces';
+import { Project } from "@/interfaces";
 import duckdb from "duckdb";
 
-
 function duckdbConnection() {
-    // Connect to DuckDB
-    var db = new duckdb.Database(
-        `md:?motherduck_token=${process.env.NEXT_PUBLIC_MOTHERDUCK_TOKEN}`,
-    );
-    var con = db.connect();
-    con.run("USE climatebase;");
-    return con;
+  // Connect to DuckDB
+  var db = new duckdb.Database(
+    `md:?motherduck_token=${process.env.NEXT_PUBLIC_MOTHERDUCK_TOKEN}`,
+  );
+  var con = db.connect();
+  con.run("USE climatebase;");
+  return con;
 }
 
-
 export function createProject(project: Project) {
-    console.log('- duckdb project', project)
+  console.log("- duckdb project", project);
 
+  const con = duckdbConnection();
 
-    const con = duckdbConnection()
-
-    con.all(
-        `INSERT INTO project(id, name, description, geometry, published, authorId) 
+  con.all(
+    `INSERT INTO project(id, name, description, geometry, published, authorId) 
         VALUES ('${project.id}', '${project.name}', '${project.description}', '${project.geometry}', ${project.published}, '${project.authorId}');
             `,
-        function (err, response) {
-            if (err) {
-                throw err;
-            }
-        }
-    )
-
+    function (err, response) {
+      if (err) {
+        throw err;
+      }
+    },
+  );
 }

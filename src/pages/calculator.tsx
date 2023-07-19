@@ -1,3 +1,3 @@
 export default function Calculator() {
-    return <div>Calculator</div>
+  return <div>Calculator</div>;
 }
