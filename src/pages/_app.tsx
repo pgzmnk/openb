@@ -3,6 +3,7 @@ import type { AppProps } from "next/app";
 import Layout from "@/components/Layout";
 import useSWR from "swr";
 import { SessionProvider } from "next-auth/react";
+import Context from "@/context/context";
 
 const fetcher = (url: RequestInfo | URL) => fetch(url).then((r) => r.json());
 
@@ -17,9 +18,11 @@ export default function App({
 
   return (
     <SessionProvider session={pageProps.session}>
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
+      <Context>
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </Context>
     </SessionProvider>
   );
 }
