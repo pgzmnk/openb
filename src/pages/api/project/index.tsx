@@ -9,7 +9,6 @@ export default function handler(
     const { method } = req
     const project: Project = { ...req.body };
 
-
     switch (method) {
         case 'GET':
             res.setHeader('Allow', ['POST'])

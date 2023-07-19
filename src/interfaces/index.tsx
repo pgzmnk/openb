@@ -3,11 +3,16 @@ export type Project = {
     name?: string
     description?: string
     geometry?: string
-    published?: string
+    published?: boolean
     authorId?: string
 }
 
 
 export interface ApiMessageResponse {
     message: string;
+}
+
+
+export interface FormProps {
+    onSubmit: (data: Project) => void;
 }

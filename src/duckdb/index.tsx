@@ -14,6 +14,8 @@ function duckdbConnection() {
 
 
 export function createProject(project: Project) {
+    console.log('- duckdb project', project)
+
 
     const con = duckdbConnection()
 
