@@ -11,11 +11,6 @@ export default function App({
   Component,
   pageProps: { session, ...pageProps },
 }: AppProps) {
-  const { data, error } = useSWR("/api/hello", fetcher);
-
-  if (error) return <div>Failed to load</div>;
-  if (!data) return <div>Loading...</div>;
-
   return (
     <SessionProvider session={pageProps.session}>
       <Context>
