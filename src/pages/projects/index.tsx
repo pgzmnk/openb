@@ -7,9 +7,9 @@ const fetcher = (url: RequestInfo | URL) => fetch(url).then((r) => r.json());
 
 
 export default function ProjectsPage() {
-    const { data: session } = useSession();
-    const author = session?.user?.email || "default"
-    console.log('- author', author)
+    // const { data: session } = useSession();
+    // const author = session?.user?.email || "default"
+    // console.log('- author', author)
 
 
     const { data, error, isLoading } = useSwr<Project[]>(
