@@ -1,6 +1,7 @@
 import { Project } from "@/interfaces";
 
 import Map from "@/components/Map";
+import Link from "next/link";
 
 export default function ProjectOverview(project: Project) {
   return (
@@ -65,12 +66,12 @@ export default function ProjectOverview(project: Project) {
               <p className="text-3xl tracking-tight text-gray-900">$10000</p>
 
               <form className="mt-10">
-                <button
-                  type="submit"
+                <Link
+                  href="/calculator"
                   className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                 >
                   Calculate Score
-                </button>
+                </Link>
               </form>
             </div>
 
