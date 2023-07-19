@@ -2,10 +2,11 @@ import { useRouter } from "next/router";
 import useSwr from "swr";
 
 import { Project } from "@/interfaces";
+import ProjectOverview from "@/components/ProjectOverview";
 
 const fetcher = (url: RequestInfo | URL) => fetch(url).then((r) => r.json());
 
-export default function Project() {
+export default function ProjectPage() {
   const { query } = useRouter();
   const { data, error, isLoading } = useSwr<Project>(
     query.id ? `/api/project/${query.id}` : null,
@@ -16,5 +17,5 @@ export default function Project() {
   if (isLoading) return <div>Loading...</div>;
   if (!data) return <div>No project found.</div>;
 
-  return <div>Project: {data.name}</div>;
+  return <ProjectOverview {...data} />;
 }
