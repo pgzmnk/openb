@@ -10,7 +10,7 @@ const fetcher = (url: RequestInfo | URL) => fetch(url).then(r => r.json())
 
 
 
-export default function App({ Component, pageProps }: AppProps) {
+export default function App({ Component, pageProps: { session, ...pageProps } }: AppProps) {
 
   const { data, error } = useSWR('/api/hello', fetcher)
 
