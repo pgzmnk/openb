@@ -12,6 +12,8 @@ export default function Project() {
     fetcher,
   );
 
+  console.log("--->", data);
+
   if (error) return <div>Failed to load project.</div>;
   if (isLoading) return <div>Loading...</div>;
   if (!data) return <div>No project found.</div>;

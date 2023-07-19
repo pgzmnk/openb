@@ -12,8 +12,6 @@ function duckdbConnection() {
 }
 
 export function createProject(project: Project) {
-  console.log("- duckdb project", project);
-
   const con = duckdbConnection();
 
   con.all(
@@ -26,4 +24,20 @@ export function createProject(project: Project) {
       }
     },
   );
+}
+
+export function getProject(id: string): Promise<Project | null> {
+  const con = duckdbConnection();
+  return new Promise((resolve, reject) => {
+    con.all(`FROM project WHERE id = '${id}'`, function (err, response) {
+      if (err) {
+        reject(err);
+      }
+      if (response.length === 0) {
+        resolve(null);
+      } else {
+        resolve(response[0] as Project);
+      }
+    });
+  });
 }
