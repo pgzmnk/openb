@@ -1,6 +1,10 @@
+import Link from "next/link";
 import { Project } from "@/interfaces";
 
-import Link from "next/link";
+const STOCK_AVATAR = "https://images.unsplash.com/photo-1534528741775-53994a69daeb"
+
+
+
 
 export default function ProjectOverview(project: Project) {
   return (
@@ -34,16 +38,24 @@ export default function ProjectOverview(project: Project) {
           <div className="flex items-center">
             <img
               className="w-10 h-10 rounded-full mr-4"
-              src="/img/jonathan.jpg"
-              alt="Avatar of Jonathan Reinink"
+              src={STOCK_AVATAR}
+              alt="Avatar"
             />
             <div className="text-sm">
-              <p className="text-gray-900 leading-none">{project.authorId}</p>
+              <p className="text-gray-900 leading-none">By: {project.authorId}</p>
               <p className="text-gray-600">Created on: July 19 2023</p>
             </div>
           </div>
+          <div class="w-20">
+            <Link
+              href={`/project/${project.id}`}
+              className="mt-10 flex w-max-100 items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+            >
+              View
+            </Link>
+          </div>
         </div>
       </div>
-    </div>
+    </div >
   );
 }
