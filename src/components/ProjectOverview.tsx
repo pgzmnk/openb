@@ -63,7 +63,7 @@ export default function ProjectOverview(project: Project) {
             <div className="mt-4 lg:row-span-3 lg:mt-0">
               <h2 className="sr-only">Project information</h2>
               {/* <p className="text-3xl tracking-tight text-gray-900">{project.score}</p> */}
-              <p className="text-3xl tracking-tight text-gray-900">$10000</p>
+              <p className="text-3xl tracking-tight text-gray-900">Score: n/a</p>
 
               <form className="mt-10">
                 <Link
