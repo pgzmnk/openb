@@ -1,10 +1,8 @@
 import Link from "next/link";
 import { Project } from "@/interfaces";
 
-const STOCK_AVATAR = "https://images.unsplash.com/photo-1534528741775-53994a69daeb"
-
-
-
+const STOCK_AVATAR =
+  "https://images.unsplash.com/photo-1534528741775-53994a69daeb";
 
 export default function ProjectOverview(project: Project) {
   return (
@@ -42,7 +40,9 @@ export default function ProjectOverview(project: Project) {
               alt="Avatar"
             />
             <div className="text-sm">
-              <p className="text-gray-900 leading-none">By: {project.authorId}</p>
+              <p className="text-gray-900 leading-none">
+                By: {project.authorId}
+              </p>
               <p className="text-gray-600">Created on: July 19 2023</p>
             </div>
           </div>
@@ -56,6 +56,6 @@ export default function ProjectOverview(project: Project) {
           </div>
         </div>
       </div>
-    </div >
+    </div>
   );
 }
