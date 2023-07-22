@@ -39,6 +39,7 @@ export default function Map() {
 
     function updateArea(e: MouseEvent) {
       const data = Draw.getAll();
+      console.log("- - - - data", data)
       setMapGeometry(data);
       const answer = document.getElementById("calculated-area");
       if (data.features.length > 0) {
