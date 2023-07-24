@@ -63,7 +63,7 @@ export default function RenderedMap() {
         if (e.type !== "draw.delete") alert("Click the map to draw a polygon.");
       }
     }
-  }, [map]);
+  }, [map, lat, lng, zoom]);
 
   useEffect(() => {
 
