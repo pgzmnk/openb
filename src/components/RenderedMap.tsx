@@ -19,22 +19,19 @@ export default function RenderedMap() {
   const { mapGeometry, setMapGeometry } = useContext(MapGeometryContext);
 
   useEffect(() => {
-
-
     const getMap = (): mapboxgl.Map => {
-
       const newMap = new mapboxgl.Map({
         container: mapContainer.current || "",
         style: "mapbox://styles/mapbox/satellite-v9", // style URL
         center: [lng, lat],
         zoom: zoom,
       });
-      setMap(newMap)
-      return newMap
+      setMap(newMap);
+      return newMap;
     };
 
     if (!map) return;
-    if (!mapContainer.current) return
+    if (!mapContainer.current) return;
 
     // Draw tool
     var Draw = new MapboxDraw();
@@ -66,7 +63,6 @@ export default function RenderedMap() {
   }, [map, lat, lng, zoom]);
 
   useEffect(() => {
-
     if (!map) return;
     if (!mapContainer?.current) return;
 

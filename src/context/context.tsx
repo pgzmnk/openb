@@ -16,12 +16,12 @@ export const MapContext = createContext<MapContextType>({
   map: null,
   setMap: function (map: mapboxgl.Map): void {
     throw new Error("Function not implemented.");
-  }
+  },
 });
 
 export const MapGeometryContext = createContext<MapGeometryContextType>({
   mapGeometry: null,
-  setMapGeometry: () => { },
+  setMapGeometry: () => {},
 });
 
 export default function Context({ children }: { children: React.ReactNode }) {

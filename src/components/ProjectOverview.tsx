@@ -1,7 +1,7 @@
 import { useEffect, useContext } from "react";
 import { Project } from "@/interfaces";
 import { FeatureCollection } from "geojson";
-var GeoJSON = require('geojson')
+var GeoJSON = require("geojson");
 import RenderedMap from "@/components/RenderedMap";
 import Link from "next/link";
 import { LngLatLike } from "mapbox-gl";
@@ -12,21 +12,22 @@ export default function ProjectOverview(project: Project) {
   const { mapGeometry, setMapGeometry } = useContext(MapGeometryContext);
   const { map, setMap } = useContext(MapContext);
 
-
   // this useEffect calls setMapGeometry with project.geometry
   useEffect(() => {
-    const geometry = GeoJSON.parse(JSON.parse(project.geometry || ""), { 'Polygon': 'polygon' });
-    console.log("geometry", geometry)
-    const centroid: LngLatLike = geometry.properties?.features[0].geometry.coordinates[0][0] || [0, 0]
-    console.log("center", centroid)
+    const geometry = GeoJSON.parse(JSON.parse(project.geometry || ""), {
+      Polygon: "polygon",
+    });
+    console.log("geometry", geometry);
+    const centroid: LngLatLike = geometry.properties?.features[0].geometry
+      .coordinates[0][0] || [0, 0];
+    console.log("center", centroid);
     setMapGeometry(geometry as FeatureCollection);
-    console.log("map", map)
+    console.log("map", map);
     if (map) {
-      console.log("map", map)
+      console.log("map", map);
       map.setCenter(centroid);
     }
   }, []);
-
 
   console.log("project", project);
   return (
