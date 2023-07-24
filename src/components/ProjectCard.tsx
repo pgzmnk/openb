@@ -4,7 +4,7 @@ import { Project } from "@/interfaces";
 const STOCK_AVATAR =
   "https://images.unsplash.com/photo-1534528741775-53994a69daeb";
 
-export default function ProjectOverview(project: Project) {
+export default function ProjectCard(project: Project) {
   return (
     <div className="container mx-auto p-10 rounded-2xl">
       <div className="bg-white rounded-xl">
