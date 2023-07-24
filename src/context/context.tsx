@@ -12,7 +12,12 @@ interface MapGeometryContextType {
   setMapGeometry: (mapGeometry: FeatureCollection) => void;
 }
 
-export const MapContext = createContext<MapContextType>({ map: null });
+export const MapContext = createContext<MapContextType>({
+  map: null,
+  setMap: function (map: mapboxgl.Map): void {
+    throw new Error("Function not implemented.");
+  }
+});
 
 export const MapGeometryContext = createContext<MapGeometryContextType>({
   mapGeometry: null,
