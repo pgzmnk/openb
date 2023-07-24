@@ -1,9 +1,34 @@
+import { useEffect, useContext } from "react";
 import { Project } from "@/interfaces";
-
-import Map from "@/components/Map";
+import { FeatureCollection } from "geojson";
+var GeoJSON = require('geojson')
+import RenderedMap from "@/components/RenderedMap";
 import Link from "next/link";
+import { LngLatLike } from "mapbox-gl";
+
+import { MapContext, MapGeometryContext } from "@/context/context";
 
 export default function ProjectOverview(project: Project) {
+  const { mapGeometry, setMapGeometry } = useContext(MapGeometryContext);
+  const { map, setMap } = useContext(MapContext);
+
+
+  // this useEffect calls setMapGeometry with project.geometry
+  useEffect(() => {
+    const geometry = GeoJSON.parse(JSON.parse(project.geometry || ""), { 'Polygon': 'polygon' });
+    console.log("geometry", geometry)
+    const centroid: LngLatLike = geometry.properties?.features[0].geometry.coordinates[0][0] || [0, 0]
+    console.log("center", centroid)
+    setMapGeometry(geometry as FeatureCollection);
+    console.log("map", map)
+    if (map) {
+      console.log("map", map)
+      map.setCenter(centroid);
+    }
+  }, []);
+
+
+  console.log("project", project);
   return (
     <div class="container mx-auto p-10">
       <div className="bg-white rounded-xl">
@@ -47,7 +72,7 @@ export default function ProjectOverview(project: Project) {
               />
             </div>
             <div className="lg:grid lg:grid-cols-1 lg:gap-y-8 col-span-2">
-              <Map />
+              <RenderedMap />
             </div>
           </div>
 

@@ -5,7 +5,7 @@ import { useSession } from "next-auth/react";
 import { v4 as uuidv4 } from "uuid";
 import { Project } from "@/interfaces";
 import React, { useContext } from "react";
-import Map from "@/components/Map";
+import RenderedMap from "@/components/RenderedMap";
 
 export default function CreateProjectForm({ onSubmit }: FormProps) {
   const { mapGeometry } = useContext(MapGeometryContext);
@@ -108,7 +108,7 @@ export default function CreateProjectForm({ onSubmit }: FormProps) {
                 </label>
                 <div className="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10">
                   <div className="text-center w-full">
-                    <Map />
+                    <RenderedMap />
                   </div>
                 </div>
                 <p className="mt-3 text-sm leading-6 text-gray-600">

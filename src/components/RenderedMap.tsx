@@ -1,6 +1,7 @@
-import mapboxgl from "mapbox-gl";
+import mapboxgl, { Map } from "mapbox-gl";
 import * as turf from "@turf/turf";
 import MapboxDraw from "@mapbox/mapbox-gl-draw";
+
 import "@mapbox/mapbox-gl-draw/dist/mapbox-gl-draw.css";
 import React, { useContext, useEffect, useRef, useState } from "react";
 import styles from "./Map.module.css";
@@ -9,22 +10,24 @@ import "mapbox-gl/dist/mapbox-gl.css";
 
 mapboxgl.accessToken = process.env.NEXT_PUBLIC_MAPBOX_API || "";
 
-export default function Map() {
+export default function RenderedMap() {
   const mapContainer = useRef(null);
-  const { map } = useContext(MapContext);
+  const { map, setMap } = useContext(MapContext);
   const [lng, setLng] = useState(-102.41);
   const [lat, setLat] = useState(18.77);
   const [zoom, setZoom] = useState(4);
   const { mapGeometry, setMapGeometry } = useContext(MapGeometryContext);
 
-  const getMap = () => {
-    return new mapboxgl.Map({
+  const getMap = (): Map => {
+    const newMap = new mapboxgl.Map({
       container: mapContainer.current || "",
       // style: "mapbox://styles/mapbox/streets-v12",
       style: "mapbox://styles/mapbox/satellite-v9", // style URL
       center: [lng, lat],
       zoom: zoom,
     });
+    setMap(newMap)
+    return newMap
   };
 
   useEffect(() => {
@@ -60,7 +63,8 @@ export default function Map() {
   }, []);
 
   useEffect(() => {
-    if (!map.current) return;
+    if (!map?.current) return;
+
     map.current.on("move", () => {
       setLng(map.current.getCenter().lng.toFixed(4));
       setLat(map.current.getCenter().lat.toFixed(4));
