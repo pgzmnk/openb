@@ -18,18 +18,13 @@ export default function ProjectOverview(project: Project) {
       Polygon: "polygon",
     });
     const geometry = _geometry.properties?.features[0].geometry
-    console.log("geometry", geometry);
     const centroid: LngLatLike = geometry.coordinates[0][0] || [0, 0];
-    console.log("center", centroid);
     setMapGeometry(geometry as FeatureCollection);
-    console.log("map", map);
     if (map) {
-      console.log("map", map);
       map.setCenter(centroid);
     }
   }, [map]);
 
-  console.log("project", project);
   return (
     <div class="container mx-auto p-10">
       <div className="bg-white rounded-xl">
