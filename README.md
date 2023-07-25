@@ -19,4 +19,3 @@ Vercel tracks the repo https://github.com/pgzmnk/openb.git. Push to it with:
 git push pg main
 ``
 
-`
