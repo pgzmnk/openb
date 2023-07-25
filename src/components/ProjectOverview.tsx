@@ -17,7 +17,7 @@ export default function ProjectOverview(project: Project) {
     const _geometry = GeoJSON.parse(JSON.parse(project.geometry || ""), {
       Polygon: "polygon",
     });
-    const geometry = _geometry.properties?.features[0].geometry
+    const geometry = _geometry.properties?.features[0].geometry;
     const centroid: LngLatLike = geometry.coordinates[0][0] || [0, 0];
     setMapGeometry(geometry as FeatureCollection);
     if (map) {

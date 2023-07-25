@@ -1,14 +1,13 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { Project, ApiMessageResponse } from "@/interfaces";
 import { listProjects } from "@/duckdb";
-import { getSession } from "next-auth/react"
-
+import { getSession } from "next-auth/react";
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Project[] | null | ApiMessageResponse>,
 ) {
-  const session = await getSession({ req })
+  const session = await getSession({ req });
   const { method } = req;
   const author = session?.user?.email || "default";
 
@@ -16,8 +15,8 @@ export default async function handler(
     case "GET":
       const projects = await listProjects(author);
       res.status(200).json(projects);
-      console.log('projects', projects)
-      console.log('authorId', author)
+      console.log("projects", projects);
+      console.log("authorId", author);
       break;
     default:
       res.setHeader("Allow", ["GET"]);
