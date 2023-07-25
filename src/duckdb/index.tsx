@@ -46,7 +46,7 @@ export function listProjects(author: string): Promise<Project[] | null> {
   const con = duckdbConnection();
   return new Promise((resolve, reject) => {
     con.all(
-      `FROM project WHERE authorId = '${author}'`,
+      `FROM project WHERE authorId IN ('${author}', 'default')`,
       function (err, response) {
         if (err) {
           reject(err);
