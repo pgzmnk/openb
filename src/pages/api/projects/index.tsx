@@ -15,8 +15,6 @@ export default async function handler(
     case "GET":
       const projects = await listProjects(author);
       res.status(200).json(projects);
-      console.log("projects", projects);
-      console.log("authorId", author);
       break;
     default:
       res.setHeader("Allow", ["GET"]);
