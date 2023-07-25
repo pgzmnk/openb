@@ -9,6 +9,7 @@ import { MapContext, MapGeometryContext } from "@/context/context";
 import "mapbox-gl/dist/mapbox-gl.css";
 
 mapboxgl.accessToken = process.env.NEXT_PUBLIC_MAPBOX_API || "";
+console.log("mapbox:", process.env.NEXT_PUBLIC_MAPBOX_API)
 
 export default function RenderedMap() {
   const mapContainer = useRef<HTMLDivElement>(null);
