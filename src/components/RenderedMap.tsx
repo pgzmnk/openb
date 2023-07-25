@@ -30,6 +30,7 @@ export default function RenderedMap() {
       setMap(newMap);
       return newMap;
     };
+    var map = getMap();
 
     if (!map) return;
     if (!mapContainer.current) return;
@@ -61,7 +62,7 @@ export default function RenderedMap() {
         if (e.type !== "draw.delete") alert("Click the map to draw a polygon.");
       }
     }
-  }, [map, lat, lng, zoom]);
+  }, [lat, lng, zoom]);
 
   useEffect(() => {
     if (!map) return;

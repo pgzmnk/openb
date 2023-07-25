@@ -14,12 +14,12 @@ export default function ProjectOverview(project: Project) {
 
   // this useEffect calls setMapGeometry with project.geometry
   useEffect(() => {
-    const geometry = GeoJSON.parse(JSON.parse(project.geometry || ""), {
+    const _geometry = GeoJSON.parse(JSON.parse(project.geometry || ""), {
       Polygon: "polygon",
     });
+    const geometry = _geometry.properties?.features[0].geometry
     console.log("geometry", geometry);
-    const centroid: LngLatLike = geometry.properties?.features[0].geometry
-      .coordinates[0][0] || [0, 0];
+    const centroid: LngLatLike = geometry.coordinates[0][0] || [0, 0];
     console.log("center", centroid);
     setMapGeometry(geometry as FeatureCollection);
     console.log("map", map);
@@ -27,7 +27,7 @@ export default function ProjectOverview(project: Project) {
       console.log("map", map);
       map.setCenter(centroid);
     }
-  }, []);
+  }, [map]);
 
   console.log("project", project);
   return (
