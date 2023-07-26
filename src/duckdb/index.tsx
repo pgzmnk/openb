@@ -48,7 +48,8 @@ export function getProject(id: string): Promise<Project | null> {
       if (err) {
         reject(err);
       }
-      if (response.length === 0) {
+      console.error('response', response)
+      if (response && response.length === 0) {
         resolve(null);
       } else {
         resolve(response[0] as Project);
@@ -80,7 +81,7 @@ export function listProjects(author: string): Promise<Project[] | null> {
       if (err) {
         reject(err);
       }
-      if (response.length === 0) {
+      if (response && response.length === 0) {
         resolve(null);
       } else {
         resolve(response as Project[]);
