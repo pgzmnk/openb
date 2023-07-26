@@ -28,8 +28,23 @@ export function createProject(project: Project) {
 
 export function getProject(id: string): Promise<Project | null> {
   const con = duckdbConnection();
+  const query = `
+    SELECT 
+      ANY_VALUE(id) AS id, 
+      ANY_VALUE(name) AS name, 
+      ANY_VALUE(description) AS description, 
+      ANY_VALUE(geometry) AS geometry, 
+      ANY_VALUE(centroid) AS centroid, 
+      ANY_VALUE(published) AS published, 
+      ANY_VALUE(area) AS area, 
+      ANY_VALUE(metric) AS methodology, 
+      AVG(score) AS score 
+      FROM project 
+      LEFT JOIN bioindicator 
+      ON project.name = bioindicator.project_name 
+      WHERE project.id = '${id}'`;
   return new Promise((resolve, reject) => {
-    con.all(`FROM project WHERE id = '${id}'`, function (err, response) {
+    con.all(query, function (err, response) {
       if (err) {
         reject(err);
       }
@@ -44,9 +59,24 @@ export function getProject(id: string): Promise<Project | null> {
 
 export function listProjects(author: string): Promise<Project[] | null> {
   const con = duckdbConnection();
+  const query = `
+    SELECT 
+      ANY_VALUE(id) AS id, 
+      ANY_VALUE(name) AS name, 
+      ANY_VALUE(description) AS description, 
+      ANY_VALUE(geometry) AS geometry, 
+      ANY_VALUE(centroid) AS centroid, 
+      ANY_VALUE(published) AS published, 
+      ANY_VALUE(area) AS area, 
+      ANY_VALUE(metric) AS methodology, 
+      AVG(score) AS score 
+      FROM project 
+      LEFT JOIN bioindicator 
+      ON project.name = bioindicator.project_name 
+      WHERE authorId IN ('${author}', 'default')`
+
   return new Promise((resolve, reject) => {
-    con.all(
-      `FROM project WHERE authorId IN ('${author}', 'default')`,
+    con.all(query,
       function (err, response) {
         if (err) {
           reject(err);

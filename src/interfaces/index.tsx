@@ -5,6 +5,8 @@ export type Project = {
   geometry?: string;
   published?: boolean;
   authorId?: string;
+  score?: number;
+  methodology?: string;
 };
 
 export interface ApiMessageResponse {

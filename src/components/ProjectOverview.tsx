@@ -14,46 +14,53 @@ export default function ProjectOverview(project: Project) {
 
   // this useEffect calls setMapGeometry with project.geometry
   useEffect(() => {
-    const _geometry = GeoJSON.parse(JSON.parse(project.geometry || ""), {
-      Polygon: "polygon",
-    });
-    const geometry = _geometry.properties?.features[0].geometry;
-    const centroid: LngLatLike = geometry.coordinates[0][0] || [0, 0];
-    setMapGeometry(geometry as FeatureCollection);
-
-    if (map) {
-      console.log("set center at", centroid)
-      map.setCenter(centroid);
-      map.on('load', () => {
-        // Add a data source containing GeoJSON data.
-        map.addSource('maine', {
-          'type': 'geojson',
-          'data': _geometry.properties?.features[0]
-        });
-
-        // Add a new layer to visualize the polygon.
-        map.addLayer({
-          'id': 'maine',
-          'type': 'fill',
-          'source': 'maine', // reference the data source
-          'layout': {},
-          'paint': {
-            'fill-color': '#0080ff', // blue color fill
-            'fill-opacity': 0.5
-          }
-        });
-        // Add a black outline around the polygon.
-        map.addLayer({
-          'id': 'outline',
-          'type': 'line',
-          'source': 'maine',
-          'layout': {},
-          'paint': {
-            'line-color': '#000',
-            'line-width': 3
-          }
-        });
+    try {
+      const _geometry = GeoJSON.parse(JSON.parse(project.geometry || ""), {
+        Polygon: "polygon",
       });
+      const geometry = _geometry.properties?.features[0].geometry;
+      const centroid: LngLatLike = geometry.coordinates[0][0] || [0, 0];
+      setMapGeometry(geometry as FeatureCollection);
+
+
+      if (map) {
+        console.log("set center at", centroid)
+        map.setCenter(centroid);
+        map.on('load', () => {
+          // Add a data source containing GeoJSON data.
+          map.addSource('maine', {
+            'type': 'geojson',
+            'data': _geometry.properties?.features[0]
+          });
+
+          // Add a new layer to visualize the polygon.
+          map.addLayer({
+            'id': 'maine',
+            'type': 'fill',
+            'source': 'maine', // reference the data source
+            'layout': {},
+            'paint': {
+              'fill-color': '#0080ff', // blue color fill
+              'fill-opacity': 0.5
+            }
+          });
+          // Add a black outline around the polygon.
+          map.addLayer({
+            'id': 'outline',
+            'type': 'line',
+            'source': 'maine',
+            'layout': {},
+            'paint': {
+              'line-color': '#000',
+              'line-width': 3
+            }
+          });
+        });
+      }
+
+    } catch (error) {
+      console.error(error);
+      location.reload()
     }
   }, [map]);
 
@@ -115,9 +122,11 @@ export default function ProjectOverview(project: Project) {
             {/* Options */}
             <div className="mt-4 lg:row-span-3 lg:mt-0">
               <h2 className="sr-only">Project information</h2>
-              {/* <p className="text-3xl tracking-tight text-gray-900">{project.score}</p> */}
-              <p className="text-3xl tracking-tight text-gray-900">
-                Score: n/a
+              <p className="text-m tracking-tight text-gray-900">
+                Score: {project.score | "n/a"}
+              </p>
+              <p className="text-m tracking-tight text-gray-400">
+                Methodology: {project.methodology | "n/a"}
               </p>
 
               <form className="mt-10">
