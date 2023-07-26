@@ -43,7 +43,9 @@ export function getProject(id: string): Promise<Project | null> {
       FROM project 
       LEFT JOIN bioindicator 
       ON project.name = bioindicator.project_name 
-      WHERE project.id = '${id}'`;
+      WHERE project.id = '${id}'
+      GROUP BY id, name
+      `;
   return new Promise((resolve, reject) => {
     con.all(query, function (err, response) {
       if (err) {
@@ -76,7 +78,9 @@ export function listProjects(author: string): Promise<Project[] | null> {
       FROM project 
       LEFT JOIN bioindicator 
       ON project.name = bioindicator.project_name 
-      WHERE authorId IN ('${author}', 'default')`;
+      WHERE authorId IN ('${author}', 'default')
+      GROUP BY id, name
+      `
 
   return new Promise((resolve, reject) => {
     con.all(query, function (err, response) {
