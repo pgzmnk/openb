@@ -7,6 +7,7 @@ export type Project = {
   authorId?: string;
   score?: number;
   methodology?: string;
+  createdDate?: string;
 };
 
 export interface ApiMessageResponse {

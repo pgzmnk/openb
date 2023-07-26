@@ -38,6 +38,7 @@ export function getProject(id: string): Promise<Project | null> {
       ANY_VALUE(published) AS published, 
       ANY_VALUE(area) AS area, 
       ANY_VALUE(metric) AS methodology, 
+      ANY_VALUE(createdDate) AS createdDate,
       AVG(score) AS score 
       FROM project 
       LEFT JOIN bioindicator 
@@ -70,10 +71,10 @@ export function listProjects(author: string): Promise<Project[] | null> {
       ANY_VALUE(published) AS published, 
       ANY_VALUE(area) AS area, 
       ANY_VALUE(metric) AS methodology, 
+      ANY_VALUE(createdDate) AS createdDate,
       AVG(score) AS score 
       FROM project 
       LEFT JOIN bioindicator 
-      ON project.name = bioindicator.project_name 
       WHERE authorId IN ('${author}', 'default')`;
 
   return new Promise((resolve, reject) => {

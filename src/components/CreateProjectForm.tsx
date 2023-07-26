@@ -11,6 +11,8 @@ export default function CreateProjectForm({ onSubmit }: FormProps) {
   const { mapGeometry } = useContext(MapGeometryContext);
   const { data: session } = useSession();
 
+  const createdDate = Date.now().toString();
+
   const [project, setProject] = React.useState<Project>({
     id: uuidv4(),
     name: "1",
@@ -18,6 +20,7 @@ export default function CreateProjectForm({ onSubmit }: FormProps) {
     geometry: "",
     published: true,
     authorId: "default",
+    createdDate: createdDate
   });
 
   // Update project when mapGeometry changes
