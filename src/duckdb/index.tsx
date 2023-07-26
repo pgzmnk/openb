@@ -75,6 +75,7 @@ export function listProjects(author: string): Promise<Project[] | null> {
       AVG(score) AS score 
       FROM project 
       LEFT JOIN bioindicator 
+      ON project.name = bioindicator.project_name 
       WHERE authorId IN ('${author}', 'default')`;
 
   return new Promise((resolve, reject) => {
