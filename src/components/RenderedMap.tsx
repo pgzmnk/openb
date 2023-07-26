@@ -48,9 +48,9 @@ export default function RenderedMap() {
       if (data.features.length > 0) {
         const area = turf.area(data);
         // Restrict the area to 2 decimal points.
-        const rounded_area = Math.round(area * 100) / 100;
+        const rounded_area = Math.round(area * 100) / 100 / 10000;
         if (answer) {
-          answer.innerHTML = `<p><strong>${rounded_area}</strong></p><p>square meters</p>`;
+          answer.innerHTML = `<p><strong>${rounded_area.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</strong> hectares </p>`;
         }
         // to-do: update this.project.geometry
       } else {

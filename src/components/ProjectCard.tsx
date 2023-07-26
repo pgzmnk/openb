@@ -60,7 +60,7 @@ export default function ProjectCard(project: Project) {
             </div>
 
             <p className="text-m tracking-tight text-gray-900">
-              Score: {project.score}
+              Score: {project.score?.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
             </p>
             <p className="text-m tracking-tight text-gray-400">
               Methodology: {project.methodology}

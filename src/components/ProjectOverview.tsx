@@ -121,7 +121,7 @@ export default function ProjectOverview(project: Project) {
             <div className="mt-4 lg:row-span-3 lg:mt-0">
               <h2 className="sr-only">Project information</h2>
               <p className="text-m tracking-tight text-gray-900">
-                Score: {project.score}
+                Score: {project.score?.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
               </p>
               <p className="text-m tracking-tight text-gray-400">
                 Methodology: {project.methodology}
