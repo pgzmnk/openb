@@ -22,45 +22,43 @@ export default function ProjectOverview(project: Project) {
       const centroid: LngLatLike = geometry.coordinates[0][0] || [0, 0];
       setMapGeometry(geometry as FeatureCollection);
 
-
       if (map) {
-        console.log("set center at", centroid)
+        console.log("set center at", centroid);
         map.setCenter(centroid);
-        map.on('load', () => {
+        map.on("load", () => {
           // Add a data source containing GeoJSON data.
-          map.addSource('maine', {
-            'type': 'geojson',
-            'data': _geometry.properties?.features[0]
+          map.addSource("maine", {
+            type: "geojson",
+            data: _geometry.properties?.features[0],
           });
 
           // Add a new layer to visualize the polygon.
           map.addLayer({
-            'id': 'maine',
-            'type': 'fill',
-            'source': 'maine', // reference the data source
-            'layout': {},
-            'paint': {
-              'fill-color': '#0080ff', // blue color fill
-              'fill-opacity': 0.5
-            }
+            id: "maine",
+            type: "fill",
+            source: "maine", // reference the data source
+            layout: {},
+            paint: {
+              "fill-color": "#0080ff", // blue color fill
+              "fill-opacity": 0.5,
+            },
           });
           // Add a black outline around the polygon.
           map.addLayer({
-            'id': 'outline',
-            'type': 'line',
-            'source': 'maine',
-            'layout': {},
-            'paint': {
-              'line-color': '#000',
-              'line-width': 3
-            }
+            id: "outline",
+            type: "line",
+            source: "maine",
+            layout: {},
+            paint: {
+              "line-color": "#000",
+              "line-width": 3,
+            },
           });
         });
       }
-
     } catch (error) {
       console.error(error);
-      location.reload()
+      location.reload();
     }
   }, [map]);
 

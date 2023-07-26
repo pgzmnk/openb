@@ -73,20 +73,18 @@ export function listProjects(author: string): Promise<Project[] | null> {
       FROM project 
       LEFT JOIN bioindicator 
       ON project.name = bioindicator.project_name 
-      WHERE authorId IN ('${author}', 'default')`
+      WHERE authorId IN ('${author}', 'default')`;
 
   return new Promise((resolve, reject) => {
-    con.all(query,
-      function (err, response) {
-        if (err) {
-          reject(err);
-        }
-        if (response.length === 0) {
-          resolve(null);
-        } else {
-          resolve(response as Project[]);
-        }
-      },
-    );
+    con.all(query, function (err, response) {
+      if (err) {
+        reject(err);
+      }
+      if (response.length === 0) {
+        resolve(null);
+      } else {
+        resolve(response as Project[]);
+      }
+    });
   });
 }

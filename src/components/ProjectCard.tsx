@@ -17,7 +17,6 @@ export default function ProjectCard(project: Project) {
           title="project image"
         ></div>
 
-
         <div className="flex flex-row border  border-gray-400 bg-white ">
           <div className=" p-4 flex flex-col justify-between leading-normal">
             <div className="mb-8">
@@ -49,8 +48,6 @@ export default function ProjectCard(project: Project) {
                 <p className="text-gray-600">Created on: July 19 2023</p>
               </div>
             </div>
-
-
           </div>
           <div className="flex flex-col justify-right leading-normal">
             <div class="w-20">
@@ -69,7 +66,6 @@ export default function ProjectCard(project: Project) {
               Methodology: {project.methodology}
             </p>
           </div>
-
         </div>
       </div>
     </div>
