@@ -109,15 +109,16 @@ export default function RenderedMap() {
 
   return (
     <div>
-      <div id="calculated-area"></div>
+      <div id="calculated-area" class="flex justify-start"></div>
+
       <div
         id="map"
         ref={mapContainer}
         className={`${styles.map_container} h-80 w-full`}
       >
-        <div className={styles.sidebar}>
+        {/* <div className={styles.sidebar}>
           Longitude: {lng} | Latitude: {lat} | Zoom: {zoom}
-        </div>
+        </div> */}
       </div>
     </div>
   );
